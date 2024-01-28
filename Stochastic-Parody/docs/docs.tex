@@ -1,0 +1,117 @@
+\documentclass[10pt]{article}
+
+% Lines beginning with the percent sign are comments
+% This file has been commented to help you understand more about LaTeX
+
+% DO NOT EDIT THE LINES BETWEEN THE TWO LONG HORIZONTAL LINES
+
+%---------------------------------------------------------------------------------------------------------
+
+% Packages add extra functionality.
+\usepackage{times,graphicx,epstopdf,fancyhdr,amsfonts,amsthm,amsmath,algorithm,algorithmic,xspace,hyperref}
+\usepackage[left=1in,top=1in,right=1in,bottom=1in]{geometry}
+\usepackage{sect sty}	%For centering section headings
+\usepackage{enumerate}	%Allows more labeling options for enumerate environments 
+\usepackage{epsfig}
+\usepackage[space]{grffile}
+\usepackage{booktabs}
+\usepackage{forest}
+\usepackage[utf8]{inputenc}
+% \usepackage{fourier} 
+\usepackage{array}
+\usepackage{makecell}
+
+% This will set LaTeX to look for figures in the same directory as the .tex file
+\graphicspath{.} % The dot means current directory.
+
+\pagestyle{fancy}
+
+\lhead{Final Project}
+\rhead{\today}
+\lfoot{CSCI 334: Principles of Programming Languages}
+\cfoot{\thepage}
+\rfoot{Fall 2023}
+
+% Some commands for changing header and footer format
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headwidth}{\textwidth}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% These let you use common environments
+\newtheorem{claim}{Claim}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{question}{Question}
+
+\setlength{\parindent}{0cm}
+
+
+%---------------------------------------------------------------------------------------------------------
+
+% DON'T CHANGE ANYTHING ABOVE HERE
+
+% Edit below as instructed
+
+\begin{document}
+  
+\section*{Lab - 9}
+
+Matt Laws, Leah Williams
+
+\subsection{Minimal Formal Grammar}
+
+
+$\langle Expr \rangle := \langle Sentiment \rangle +  "\backslash n"$ + $\langle Keyword \rangle +  "\backslash n"$ + $\langle Line \rangle^+$
+
+% \hspace{40pt} $|$ $\langle Keyword \rangle$
+
+% \hspace{40pt} $|$ $\langle Line \rangle$\\
+
+$\langle Keyword \rangle := \langle word \rangle^*$
+
+
+% \hspace{40pt} $|$ $\langle word \rangle$
+
+$\langle Sentiment \rangle := \langle word \rangle$
+
+\hspace{70pt} $| \epsilon$
+
+$\langle Line \rangle := \langle word \rangle^+ + "\backslash n"$
+
+% \hspace{40pt} $|$ $\langle word \rangle$
+$\langle word \rangle := \langle letter \rangle^+ \in \{\text{CMU Pronunciation Dictionary}\}$
+
+$\langle Letter \rangle := \{a...z\}$
+
+
+\subsection{Minimal Semantics}
+
+\begin{center}
+\begin{tabular}{ |c|c|c|c|c| }
+ \hline
+ Syntax & Abstract Syntax & Type & Prec./Assoc & Meaning \\ 
+ \hline
+ Word & word of string & string  & N\textbackslash A &  \makecell{Word is a primitive that represents\\ a string of alpha characters that\\ is contained in the CMU Pronunciation Dictionary} \\
+ \hline
+ Line & Line of word list & string list & N\textbackslash A &  \makecell{Line is a list of words that \\ represents a line of a song\\ that will be converted to new words\\ each word is independent of each other} \\ 
+ \hline
+  Keyword & Keywords of word list & string list & N\textbackslash A & \makecell{Keywords is a field that takes in a list of words\\ and saves them as keywords to be\\ added into the newly transformed song} \\ 
+ \hline
+ Sentiment & string & string & N\textbackslash A & \makecell{Sentiment is a field that takes in a word \\and adds words to priority words list\\ according to a given sentiment} \\ 
+ \hline
+ Letter & char & char &  N\textbackslash A &  \makecell{ Letter is a primitive. We represent chars\\ using unicode character values F\# data type } \\
+ \hline
+  Line + $\backslash n$ + Line & \makecell{Sequential lines\\ of line list} & string list list &  \makecell{first \\ changed\\ first} &  \makecell{ We parse each line in order when we transform\\ them into new lines} \\ 
+ \hline
+ CMU\_dict & \makecell{dict of \\records list} & record list &  \makecell{ N\textbackslash A } &  \makecell{ This is the dict we query to do our\\ word conversions, it stores and entry for each \\word and its emphasis and rhyme. It is an internal \\resource, and it returns the word FAIL if it cannot\\ find a match} \\
+ \hline
+ 
+\end{tabular}
+\end{center}
+
+
+
+\end{document}
+https://www.overleaf.com/project/654fc7f452dffeb1a0cb2dbe
