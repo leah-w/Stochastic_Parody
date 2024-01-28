@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "kfQ40j22KNcpoSVRnojH+F6RSO5WU602QMSWYXijvN1uaUtxx3c4ynY9zj0tFjX6aalGGTkfQWDU1d3j4EvuSQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\leahw\\Desktop\\cs 344\\cs334-project-lcw4-mdl4\\code\\Stochastic-Parody\\Stochastic-Parody.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\leahw\\.nuget\\packages\\fsharp.core\\7.0.400\\fsharp.core.7.0.400.nupkg.sha512"
+  ],
+  "logs": []
+}
